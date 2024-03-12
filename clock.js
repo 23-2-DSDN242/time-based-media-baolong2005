@@ -3,6 +3,15 @@
  */
 //loadImage(Coconut_Tree.png);
 function draw_clock(obj) {
+  let hr = hour ();
+  let mn = minute ();
+  let sc = second ();
+  let x_move = map(hr, 0, 23, 0, -960);
+  if (hr >= 23) {
+    x_move = map(hr, 0, 23, -960, 0);
+  } else {
+    x_move = map(hr, 0, 23, 0, -960);
+  }
   // draw your own clock here based on the values of obj:
   //    obj.hours goes from 0-23
   //    obj.minutes goes from 0-59
@@ -19,7 +28,16 @@ function draw_clock(obj) {
   // Night clock scene with moon and stars
   ellipse (480, 600, 1200, 500);
   fill (255);
-  circle (960, 0, 200);
+  text (hr + ':' + mn + ':' + sc, 200, 300);
+  push ();
+  translate (960,0);
+  ellipse (x_move, 0, 200);
+  pop ();
+
+
+  
+
+  }
 //  image (Coconut_Tree, 0 , 0);
 
   // textSize(40);
@@ -34,4 +52,4 @@ function draw_clock(obj) {
   // fill(175, 133, 255); // purple
   // ellipse(width / 3 * 2, 350, 150);
 
-}
+

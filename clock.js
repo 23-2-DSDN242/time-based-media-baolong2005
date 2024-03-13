@@ -34,11 +34,8 @@ function draw_clock(obj) {
   else{
     fill(13, 158, 59) // green
   }
-  
   ellipse (480, 600, 1200, 500); // grounds
   
-  
-  // text (hr + ':' + mn + ':' + sc, 200, 300);  
   if(obj.hours <= 6 || obj.hours > 20 ) { // 20 is 8pm
     fill (255, 255, 255, OpacityAm);
   let sizeStep = 10;
@@ -53,9 +50,9 @@ function draw_clock(obj) {
   for(let i = 0; i < howManyCircles; i++){
     ellipse (posX, 0, sizeStep*i); // light 
   }}
-  if(posX >= 960){
-     ellipse (posX, 0, sizeStep*i)
-   }
+  // if(posX >= 960){
+  //    ellipse (posX, 0, sizeStep*i)
+  //  }
   fill(235, 235, 9); 
   star(300, 200, 30, 80, 4);
   star(400, 300, 30, 80, 5);

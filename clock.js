@@ -3,9 +3,6 @@
  */
 //loadImage(Coconut_Tree.png);
 function draw_clock(obj) {
-  //  let hr = hour ();
-  //  let mn = minute ();
-  //  let sc = second ();
   let OpacityAm = 35;
   let blue = color(42, 184, 245);
   let whitish = color(215, 240, 247);
@@ -30,9 +27,14 @@ function draw_clock(obj) {
   else{
     background(42, 184, 245); // day
   }
+   // Night clock scene with moon and stars
+   if(obj.hours <= 6 || obj.hours > 20 ) { // 20 is 8pm
+    fill(200); // dark grey
+  }
+  else{
+    fill(13, 158, 59) // green
+  }
   
-  fill(200); // dark grey
-  // Night clock scene with moon and stars
   ellipse (480, 600, 1200, 500); // grounds
   
   
@@ -51,9 +53,9 @@ function draw_clock(obj) {
   for(let i = 0; i < howManyCircles; i++){
     ellipse (posX, 0, sizeStep*i); // light 
   }}
-  // if(posX >= 960){
-    // ellipse (posX, 0, sizeStep*i)
-  // }
+  if(posX >= 960){
+     ellipse (posX, 0, sizeStep*i)
+   }
   fill(235, 235, 9); 
   star(300, 200, 30, 80, 4);
   star(400, 300, 30, 80, 5);
@@ -74,7 +76,7 @@ function draw_clock(obj) {
     sy = y + sin(a + halfAngle) * radius1;
     vertex(sx, sy);
   }
-  // scale (0.2);
+   scale (0.5);
 
   endShape(CLOSE);
   

@@ -1,18 +1,19 @@
 /*
  * use p5.js to draw a clock on a 960x500 canvas
  */
-//loadImage(Coconut_Tree.png);
-let testImg;
+
+let nightImg;
+let dayImg;
 let firstRun = true;
 
 function draw_clock(obj) {
   if (firstRun) {
     rectMode(CENTER);
-    testImg = loadImage('Coconut_Tree.png');
-
+    nightImg = loadImage('Coconut_Tree.png');
+    dayImg = loadImage('Tree.png');
     firstRun = false;
   }
-
+  colorMode(RGB);
   let OpacityAm = 35;
   let blue = color(42, 184, 245);
   let whitish = color(215, 240, 247);
@@ -20,6 +21,9 @@ function draw_clock(obj) {
   let darkBlue = color(9, 18, 51);
   let posX = map(obj.hours, 0, 23, 0, 960);
   let sizeofBlock = 900;
+  let hr = hour()
+  let mn = minute()
+  let sc = second()
 
   
   // draw your own clock here based on the values of obj:
@@ -31,7 +35,9 @@ function draw_clock(obj) {
   //        < 0 if no alarm is set
   //        = 0 if the alarm is currently going off
   //        > 0 --> the number of seconds until alarm should go off
-  
+
+
+  // Background (day/night)
   if(obj.hours <= 6 || obj.hours > 20 ) { // 20 is 8pm
   for (let i = 0; i < sizeofBlock; i++) {
     let gradientAmount = map(i, 0, sizeofBlock, 0, 1);
@@ -50,11 +56,9 @@ function draw_clock(obj) {
   }
   
 
-  // translate(width / 2, height / 2);
-
-  // pop()
+  
   noStroke()
-   // Night clock scene with moon and stars
+   // Ground (day/night)
    if(obj.hours <= 6 || obj.hours > 20 ) { // 20 is 8pm
     fill(200); // dark grey
   }
@@ -63,6 +67,7 @@ function draw_clock(obj) {
   }
   ellipse (480, 600, 1200, 500); // grounds
   
+  // Hour (SUN/MOON)
   if(obj.hours <= 6 || obj.hours > 20 ) { // 20 is 8pm
     fill (255, 255, 255, OpacityAm);
   let sizeStep = 10;
@@ -79,6 +84,8 @@ function draw_clock(obj) {
   }}
 
   //  image (testImg, height/2, width/2);
+
+  // Minute (CLOUD/STAR)
   if(obj.hours <= 6 || obj.hours > 20 ) { // 20 is 8pm
   push()
     translate(width / 2, height / 2 )
@@ -93,19 +100,41 @@ push()
    cloud(0, 0, 1) // day 
    pop()
   }
-  // if (obj.seconds_until_alarm < 0){
-  //   perspective ()
-  // }
 
-   fill(61, 39, 11)
-   rect (0, 0, 100, 50); //sign to show time 
-
+  //sign to show time
   push()
-  scale(0.6)
-  translate(width/2, height/2)
-  ellipse(0,0, 100)
-   image (testImg, 400,-50);
+  stroke(0)
+   translate(width/ 2, height/ 2);
+   fill(102, 77, 17);
+   rect(-100,160, 20, 120);
+   fill(92, 67, 8); //brown
+   rect(-100, 150, 150, 80);
+   rect (-100, 150, 150, 80); 
    pop()
+  
+   // time text
+   push()
+   translate(width/ 2, height/ 2);
+   scale(2)
+   fill(255)
+   text(hr + ':' + mn + ':' + sc, -73, 80 )
+   pop()
+
+   // Tree (day/night)
+if(obj.hours <= 6 ||obj.hours > 20 ) {
+  push()
+  scale(0.8)
+   image (nightImg, 550,10);
+   pop() // night
+  }
+   else{
+    push()
+    scale(0.8)
+    image (dayImg, 750, 80)
+    pop() //day
+   }
+   
+  
   }
 
   function star(x,y,radius1, radius2, points) {

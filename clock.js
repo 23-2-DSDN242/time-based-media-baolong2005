@@ -96,7 +96,8 @@ function draw_clock(obj) {
   }
   else{
 push()
-    scale(10)
+translate(width/ 2, height/ 2)
+     scale(1.5)
    cloud(0, 0, 1) // day 
    pop()
   }

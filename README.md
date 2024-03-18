@@ -8,3 +8,6 @@ The moon will be the same as the star
 I intended to make a day scenary which the sun will replace the moon and the clouds will replace the stars
 I just finished to copy the maeda clock 
 I just added some code for the movement of the moon
+I added day and night
+The sun/moon can move forward but not backward to create a cycle
+I added code to change the color of the ground 

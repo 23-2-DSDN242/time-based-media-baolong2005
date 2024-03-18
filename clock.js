@@ -2,7 +2,17 @@
  * use p5.js to draw a clock on a 960x500 canvas
  */
 //loadImage(Coconut_Tree.png);
+let testImg;
+let firstRun = true;
+
 function draw_clock(obj) {
+  if (firstRun) {
+    rectMode(CENTER);
+    testImg = loadImage('Coconut_Tree.png');
+
+    firstRun = false;
+  }
+
   let OpacityAm = 35;
   let blue = color(42, 184, 245);
   let whitish = color(215, 240, 247);
@@ -10,8 +20,7 @@ function draw_clock(obj) {
   let darkBlue = color(9, 18, 51);
   let posX = map(obj.hours, 0, 23, 0, 960);
   let sizeofBlock = 900;
-  let testImg;
-  let firstRun = true;
+
   
   // draw your own clock here based on the values of obj:
   //    obj.hours goes from 0-23
@@ -40,13 +49,7 @@ function draw_clock(obj) {
     }
   }
   
-  // push()
-  // if (firstRun) {
-  //   rectMode(CENTER);
-  //   testImg = loadImage('Coconut_Tree.png');
 
-  //   firstRun = false;
-  // }
   // translate(width / 2, height / 2);
 
   // pop()
@@ -65,36 +68,44 @@ function draw_clock(obj) {
   let sizeStep = 10;
   let howManyCircles = 20; 
   for(let i = 0; i < howManyCircles; i++){
-    ellipse (posX, 0, sizeStep*i); // dark
+    ellipse (posX, 0, sizeStep*i); // night
   }}
   else{
     fill (237, 182, 0, OpacityAm);
   let sizeStep = 10;
   let howManyCircles = 20; 
   for(let i = 0; i < howManyCircles; i++){
-    ellipse (posX, 0, sizeStep*i); // light 
+    ellipse (posX, 0, sizeStep*i); // day 
   }}
 
-  // image (testImg, height/2, width/2);
+  //  image (testImg, height/2, width/2);
   if(obj.hours <= 6 || obj.hours > 20 ) { // 20 is 8pm
-  // if(obj.minutes )
+  push()
     translate(width / 2, height / 2 )
   scale (0.3)
   star(0, 0, 30, 80, 4);
-  star(0, 0, 30, 80, 5); // dark
-  
+  star(0, 0, 30, 80, 5); // night
+  pop()
   }
   else{
-
+push()
     scale(10)
-   cloud(0, 0, 1) // light 
+   cloud(0, 0, 1) // day 
+   pop()
   }
+  // if (obj.seconds_until_alarm < 0){
+  //   perspective ()
+  // }
 
-  fill(61, 39, 11)
-  rect (0, 0, 100, 50);
+   fill(61, 39, 11)
+   rect (0, 0, 100, 50); //sign to show time 
 
-  
-
+  push()
+  scale(0.6)
+  translate(width/2, height/2)
+  ellipse(0,0, 100)
+   image (testImg, 400,-50);
+   pop()
   }
 
   function star(x,y,radius1, radius2, points) {

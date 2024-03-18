@@ -9,7 +9,9 @@ function draw_clock(obj) {
   let grey = color(30, 31, 36);
   let darkBlue = color(9, 18, 51);
   let posX = map(obj.hours, 0, 23, 0, 960);
-  noStroke();
+  let sizeofBlock = 900;
+  let testImg;
+  let firstRun = true;
   
   // draw your own clock here based on the values of obj:
   //    obj.hours goes from 0-23
@@ -22,11 +24,32 @@ function draw_clock(obj) {
   //        > 0 --> the number of seconds until alarm should go off
   
   if(obj.hours <= 6 || obj.hours > 20 ) { // 20 is 8pm
-    background(30, 31, 36); // night
+  for (let i = 0; i < sizeofBlock; i++) {
+    let gradientAmount = map(i, 0, sizeofBlock, 0, 1);
+    let strokeColor = lerpColor(grey, darkBlue, gradientAmount);
+    stroke(strokeColor);
+    line(0, i, width, i); // night
   }
+}
   else{
-    background(42, 184, 245); // day
+    for (let i = 0; i < sizeofBlock; i++) {
+      let gradientAmount = map(i, 0, sizeofBlock, 0, 1);
+      let strokeColor = lerpColor(blue, whitish, gradientAmount);
+      stroke(strokeColor);
+      line(0, i, width, i); // day
+    }
   }
+  // push()
+  // if (firstRun) {
+  //   rectMode(CENTER);
+  //   testImg = loadImage('Coconut_Tree.png');
+
+  //   firstRun = false;
+  // }
+  // translate(width / 2, height / 2);
+
+  // pop()
+  noStroke()
    // Night clock scene with moon and stars
    if(obj.hours <= 6 || obj.hours > 20 ) { // 20 is 8pm
     fill(200); // dark grey
@@ -50,12 +73,15 @@ function draw_clock(obj) {
   for(let i = 0; i < howManyCircles; i++){
     ellipse (posX, 0, sizeStep*i); // light 
   }}
-  // if(posX >= 960){
-  //    ellipse (posX, 0, sizeStep*i)
-  //  }
-  fill(235, 235, 9); 
-  star(300, 200, 30, 80, 4);
-  star(400, 300, 30, 80, 5);
+
+  // image (testImg, height/2, width/2);
+  
+  translate(width / 2, height / 2 )
+  scale (0.3)
+  star(0, 0, 30, 80, 4);
+  star(0, 0, 30, 80, 5);
+
+  // cloud(0, 0, 30)
 
   
 
@@ -64,6 +90,7 @@ function draw_clock(obj) {
   function star(x,y,radius1, radius2, points) {
     let angle = TWO_PI / points;
     let halfAngle = angle / 2.0;
+    fill(235, 235, 9); 
   beginShape();
   for (let a = 0; a < TWO_PI; a += angle) {
     let sx = x + cos(a) * radius2;
@@ -73,9 +100,17 @@ function draw_clock(obj) {
     sy = y + sin(a + halfAngle) * radius1;
     vertex(sx, sy);
   }
-   scale (0.5);
+   
 
   endShape(CLOSE);
+  function cloud(x, y, size) {
+    fill(255, 255, 255);
+    noStroke();
+    arc(x, y, 25 * size, 20 * size, PI + TWO_PI, TWO_PI);
+    arc(x + 10, y, 25 * size, 45 * size, PI + TWO_PI, TWO_PI);
+    arc(x + 25, y, 25 * size, 35 * size, PI + TWO_PI, TWO_PI);
+    arc(x + 40, y, 30 * size, 20 * size, PI + TWO_PI, TWO_PI);
+  }
   
   }
 //  image (Coconut_Tree, 0 , 0);

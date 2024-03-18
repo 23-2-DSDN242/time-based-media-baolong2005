@@ -11,3 +11,4 @@ I just added some code for the movement of the moon
 I added day and night
 The sun/moon can move forward but not backward to create a cycle
 I added code to change the color of the ground 
+I added clouds code for day and stars code for night 

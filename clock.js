@@ -39,6 +39,7 @@ function draw_clock(obj) {
       line(0, i, width, i); // day
     }
   }
+  
   // push()
   // if (firstRun) {
   //   rectMode(CENTER);
@@ -75,13 +76,22 @@ function draw_clock(obj) {
   }}
 
   // image (testImg, height/2, width/2);
-  
-  translate(width / 2, height / 2 )
+  if(obj.hours <= 6 || obj.hours > 20 ) { // 20 is 8pm
+  // if(obj.minutes )
+    translate(width / 2, height / 2 )
   scale (0.3)
   star(0, 0, 30, 80, 4);
-  star(0, 0, 30, 80, 5);
+  star(0, 0, 30, 80, 5); // dark
+  
+  }
+  else{
 
-  // cloud(0, 0, 30)
+    scale(10)
+   cloud(0, 0, 1) // light 
+  }
+
+  fill(61, 39, 11)
+  rect (0, 0, 100, 50);
 
   
 
@@ -103,8 +113,9 @@ function draw_clock(obj) {
    
 
   endShape(CLOSE);
+}
   function cloud(x, y, size) {
-    fill(255, 255, 255);
+    fill(255);
     noStroke();
     arc(x, y, 25 * size, 20 * size, PI + TWO_PI, TWO_PI);
     arc(x + 10, y, 25 * size, 45 * size, PI + TWO_PI, TWO_PI);
@@ -112,7 +123,6 @@ function draw_clock(obj) {
     arc(x + 40, y, 30 * size, 20 * size, PI + TWO_PI, TWO_PI);
   }
   
-  }
-//  image (Coconut_Tree, 0 , 0);
+  
 
 

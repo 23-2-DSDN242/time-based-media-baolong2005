@@ -85,7 +85,7 @@ function draw_clock(obj) {
 
   //  image (testImg, height/2, width/2);
 
-  // Minute (CLOUD/STAR)
+  // Minute (CLOUD/STAR) --> Range height: 80 --> 390 
   if(obj.hours <= 6 || obj.hours > 20 ) { // 20 is 8pm
   push()
     translate(width / 2, height / 2 )
@@ -96,10 +96,12 @@ function draw_clock(obj) {
   }
   else{
 push()
-translate(width/ 2, height/ 2)
+// let cloudx= random([80],[390])
+// let cloudy = random([80],[390])
+// translate(width/ 2, height/ 2)
      scale(1.5);
-   
-   cloud(0, 0, 1) // day 
+    ellipse(100,100, 20)
+   cloud(100, 100, 1) // day 
    pop()
   }
 
@@ -119,7 +121,7 @@ translate(width/ 2, height/ 2)
    translate(width/ 2, height/ 2);
    scale(2)
    fill(255)
-   text(hr + ':' + mn + ':' + sc, -73, 80 )
+   text(nf(hr, 2, 0) + ':' + nf(mn, 2, 0) + ':' + nf(sc, 2, 0), -73, 80 )
    pop()
 
    // Tree (day/night)
@@ -135,8 +137,7 @@ if(obj.hours <= 6 ||obj.hours > 20 ) {
     image (dayImg, 750, 80)
     pop() //day
    }
-   
-  
+
   }
 
   function star(x,y,radius1, radius2, points) {

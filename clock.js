@@ -97,7 +97,8 @@ function draw_clock(obj) {
   else{
 push()
 translate(width/ 2, height/ 2)
-     scale(1.5)
+     scale(1.5);
+   
    cloud(0, 0, 1) // day 
    pop()
   }
@@ -151,8 +152,6 @@ if(obj.hours <= 6 ||obj.hours > 20 ) {
     sy = y + sin(a + halfAngle) * radius1;
     vertex(sx, sy);
   }
-   
-
   endShape(CLOSE);
 }
   function cloud(x, y, size) {

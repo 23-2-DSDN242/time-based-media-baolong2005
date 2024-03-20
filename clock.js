@@ -138,6 +138,7 @@ if(obj.hours <= 6 ||obj.hours > 20 ) {
     pop() //day
    }
   } else if (obj.seconds_until_alarm > 0){
+    background(0);
 
 } else{
   for (let r of rains){

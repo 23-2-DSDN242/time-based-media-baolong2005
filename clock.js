@@ -5,6 +5,7 @@
 let nightImg;
 let dayImg;
 let firstRun = true;
+let rains = []
 
 function draw_clock(obj) {
   if (firstRun) {
@@ -24,6 +25,7 @@ function draw_clock(obj) {
   let hr = hour()
   let mn = minute()
   let sc = second()
+  let posXm = map(obj.minutes, 0, 59, 0, 960)
 
   
   // draw your own clock here based on the values of obj:
@@ -55,7 +57,7 @@ function draw_clock(obj) {
     }
   }
   
-
+  if(obj.seconds_until_alarm < 0){
   
   noStroke()
    // Ground (day/night)
@@ -83,25 +85,23 @@ function draw_clock(obj) {
     ellipse (posX, 0, sizeStep*i); // day 
   }}
 
-  //  image (testImg, height/2, width/2);
-
   // Minute (CLOUD/STAR) --> Range height: 80 --> 390 
   if(obj.hours <= 6 || obj.hours > 20 ) { // 20 is 8pm
   push()
     translate(width / 2, height / 2 )
   scale (0.3)
+
   star(0, 0, 30, 80, 4);
-  star(0, 0, 30, 80, 5); // night
+  star(0,0 , 30, 80, 5); // night
   pop()
   }
   else{
 push()
-// let cloudx= random([80],[390])
-// let cloudy = random([80],[390])
-// translate(width/ 2, height/ 2)
      scale(1.5);
-    ellipse(100,100, 20)
-   cloud(100, 100, 1) // day 
+    
+   cloud(posXm, 50, 1)
+   cloud(posXm, 30, 1)
+   cloud(posXm, 70, 1) // day 
    pop()
   }
 
@@ -137,8 +137,18 @@ if(obj.hours <= 6 ||obj.hours > 20 ) {
     image (dayImg, 750, 80)
     pop() //day
    }
+  } else if (obj.seconds_until_alarm > 0){
 
-  }
+} else{
+  for (let r of rains){
+  r.show()
+  r.update()
+}
+for (let i = 0; i < 8; i++){
+rains.push(new Rain(random(width), 0))
+}}
+
+   }
 
   function star(x,y,radius1, radius2, points) {
     let angle = TWO_PI / points;
@@ -162,6 +172,25 @@ if(obj.hours <= 6 ||obj.hours > 20 ) {
     arc(x + 10, y, 25 * size, 45 * size, PI + TWO_PI, TWO_PI);
     arc(x + 25, y, 25 * size, 35 * size, PI + TWO_PI, TWO_PI);
     arc(x + 40, y, 30 * size, 20 * size, PI + TWO_PI, TWO_PI);
+  }
+
+  class Rain{
+    constructor(x, y){
+      this.pos = createVector(x, y)
+      this.vel = createVector(0, random(7, 10))
+      this.len = random(15, 30)
+      this.thick = random(255)
+    }
+    show(){
+      stroke(255, this.thick)
+      line(this.pos.x, this.pos.y, this.pos.x, this.pos.y - this.len)
+    }
+    update(){
+      this.pos.add(this.vel)
+      if(this.pos.y > height + 100){
+        rains.shift()
+      }
+    }
   }
   
   

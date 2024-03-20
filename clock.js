@@ -56,9 +56,6 @@ function draw_clock(obj) {
       line(0, i, width, i); // day
     }
   }
-  
-  if(obj.seconds_until_alarm < 0){
-  
   noStroke()
    // Ground (day/night)
    if(obj.hours <= 6 || obj.hours > 20 ) { // 20 is 8pm
@@ -99,9 +96,9 @@ function draw_clock(obj) {
 push()
      scale(1.5);
     
-   cloud(posXm, 50, 1)
-   cloud(posXm, 30, 1)
-   cloud(posXm, 70, 1) // day 
+   cloud(posXm + 10, 50, 1)
+   cloud(posXm - 30, 30, 1)
+   cloud(posXm + 80, 70, 1) // day 
    pop()
   }
 
@@ -137,8 +134,8 @@ if(obj.hours <= 6 ||obj.hours > 20 ) {
     image (dayImg, 750, 80)
     pop() //day
    }
+   if(obj.seconds_until_alarm < 0 || obj.seconds_until_alarm == undefined){
   } else if (obj.seconds_until_alarm > 0){
-    background(0);
 
 } else{
   for (let r of rains){

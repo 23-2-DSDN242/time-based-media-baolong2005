@@ -28,7 +28,7 @@ function draw_clock(obj) {
   let sc = second()
   let posXm = map(obj.minutes, 0, 59, 0, 800)
   let scaleC = 5;
-  let posXs = map(obj.minutes, 0, 59, 0, 2880)
+  let posXs = map(obj.minutes, 0, 59, 0, 3500)
   
   
   // draw your own clock here based on the values of obj:

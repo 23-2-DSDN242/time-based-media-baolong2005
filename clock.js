@@ -28,7 +28,7 @@ function draw_clock(obj) {
   let sc = second()
   let posXm = map(obj.minutes, 0, 59, 0, 800)
   let scaleC = 5;
-  let r = map(obj.seconds, 0, 59, 0, 360)
+  let posXs = map(obj.minutes, 0, 59, 0, 960)
   
   
   // draw your own clock here based on the values of obj:
@@ -85,18 +85,18 @@ function draw_clock(obj) {
     ellipse (posX, 0, sizeStep*i); // day 
   }}
 
-  // Minute: CLOUD; Second: STAR --> Range height: 80 --> 390 
+  // Minute: CLOUD/STAR --> Range height: 80 --> 390 
   if(obj.hours <= 6 || obj.hours > 20 ) { // 20 is 8pm
   push()
   scale (0.3);
      translate(width / 2, height / 2 )
-  rotate(r);
-  star(-150, 100, 30, 80, 4);
-  star(0, 0, 30, 80, 5)
-  star(0, 0, 30, 80, 4);
-  star(0, -0, 30, 80, 5)
-  star(0, 0, 30, 80, 4);
-  star(0, 0, 30, 80, 5); // night 
+  
+  star(posXs , 100, 30, 80, 4);
+  star(posXs, 0, 30, 80, 5)
+  star(posXs, 0, 30, 80, 4);
+  star(posXs, -0, 30, 80, 5)
+  star(posXs, 0, 30, 80, 4);
+  star(posXs, 0, 30, 80, 5); // night 
   pop()
   }
   else{

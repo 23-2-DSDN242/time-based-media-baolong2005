@@ -28,7 +28,7 @@ function draw_clock(obj) {
   let sc = second()
   let posXm = map(obj.minutes, 0, 59, 0, 800)
   let scaleC = 5;
-  let posXs = map(obj.minutes, 0, 59, 0, 3500)
+  let posXs = map(obj.minutes, 0, 59, 0, 7000)
   
   
   // draw your own clock here based on the values of obj:
@@ -92,11 +92,11 @@ function draw_clock(obj) {
      translate(width / 2, height / 2 )
   
   star(posXs - 950, 100, 30, 80, 4);
-  star(posXs - 1050, 120, 30, 80, 5)
+  star(posXs - 1050, 280, 30, 80, 5)
   star(posXs - 1500, 0, 30, 80, 4);
-  star(posXs - 1750, 380, 30, 80, 5)
-  star(posXs - 1800, 270, 30, 80, 4);
-  star(posXs - 1200, 180, 30, 80, 5); // night 
+  star(posXs - 1750, 700, 30, 80, 5)
+  star(posXs - 1800, 420, 30, 80, 4);
+  star(posXs - 1200, 830, 30, 80, 5); // night 
   pop()
   }
   else{

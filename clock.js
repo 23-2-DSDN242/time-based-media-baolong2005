@@ -91,12 +91,12 @@ function draw_clock(obj) {
   scale (0.3);
      translate(width / 2, height / 2 )
   
-  star(posXs , 100, 30, 80, 4);
-  star(posXs, 0, 30, 80, 5)
-  star(posXs, 0, 30, 80, 4);
-  star(posXs, -0, 30, 80, 5)
-  star(posXs, 0, 30, 80, 4);
-  star(posXs, 0, 30, 80, 5); // night 
+  star(posXs - 150, 100, 30, 80, 4);
+  star(posXs - 50, 120, 30, 80, 5)
+  star(posXs - 300, 0, 30, 80, 4);
+  star(posXs - 250, 380, 30, 80, 5)
+  star(posXs - 400, 270, 30, 80, 4);
+  star(posXs - 100, 180, 30, 80, 5); // night 
   pop()
   }
   else{
